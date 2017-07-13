@@ -16,6 +16,9 @@ mongo.exe
 
 # serve with hot reload at localhost:3000
 npm run dev
+
+# 查看
+打开浏览器8080窗口，切换成移动端查看
 ```
 ## 添加数据（按图片步骤添加）
 
