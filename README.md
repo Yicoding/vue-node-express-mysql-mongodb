@@ -8,6 +8,12 @@
 # install dependencies
 npm install
 
+# 安装完数据库后，启动mongodb(windows下)
+mongod.exe
+
+# 新开一个窗口，连接mongodb
+mongo.exe
+
 # serve with hot reload at localhost:8080
 npm run dev
 
