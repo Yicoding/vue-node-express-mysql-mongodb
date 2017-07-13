@@ -1,4 +1,4 @@
-# node-mysql
+# 移动端项目
 
 > A simple project use of the vue, node, express, mysql
 
@@ -16,6 +16,9 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
+
+# 查看
+打开浏览器8080窗口，切换成移动端查看
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
