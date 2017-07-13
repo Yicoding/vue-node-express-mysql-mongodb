@@ -1,6 +1,7 @@
 # mongodb mongoose
 
-> A simple project use of the vue, node, express,mongodb
+> 使用vue-cli+node+express+mongod创建了一个简单的项目，包含用户、用户角色、用户所属公司三大块。
+  查看vue-cli+node+express+mysql项目的，切换到mongod分支上
 
 ## Build Setup
 
