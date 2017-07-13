@@ -1,6 +1,6 @@
 # node-mysql
 
-> A simple project use of the vue, node, express, mysql / mongodb
+> A simple project use of the vue, node, express, mysql
 
 ## Build Setup
 
