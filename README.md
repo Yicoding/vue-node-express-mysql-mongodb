@@ -14,7 +14,7 @@ mongod.exe
 # 新开一个窗口，连接mongodb
 mongo.exe
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:3000
 npm run dev
 ```
 
