@@ -18,6 +18,6 @@ mongo.exe
 npm run dev
 ```
 ## 添加数据（按图片步骤添加）
-![image](https://github.com/Yicoding/vue-node-express-mysql-mongod.git/src/assets/role.png)
+![image](https://github.com/Yicoding/vue-node-express-mysql-mongod/src/assets/role.png)
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
