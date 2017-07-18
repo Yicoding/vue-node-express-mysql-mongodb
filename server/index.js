@@ -11,31 +11,15 @@ var connection = mysql.createConnection({
 })
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
-
-// test
-router.get('/api/group', (req, res) => {
-	var sql = 'select users.id, users.name, role.name as rname, role.fullName from users inner join role on users.role_id=role.id'
-	connection.query(sql, (err, data) => {
-		// res.send(data)
-		var result = []
-		for (var k in data) {
-			result.push({
-				id: data[k].id,
-				name: data[k].name,
-				role: {
-					name: data[k].rname,
-					fullName: data[k].fullName
-				}
-			})
-		}
-		res.send(result)
-	})
+router.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*')
+	next()
 })
 
 // user 
 // /user/findall
 router.get('/api/user/findall', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
+	
 	var sql = 'select user.id, user.name, user.fullName, user.password, user.phone, user.mail, role.id as roleId, role.name as roleName, role.fullName as rolefullName, company.id as companyId, company.name as companyName from user join role on user.role_id=role.id join company on user.company_id=company.id'
 	connection.query(sql, (err, data) => {
 		var result = []
@@ -64,7 +48,6 @@ router.get('/api/user/findall', (req, res) => {
 })
 // /user/findone
 router.get('/api/user/findone', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
 	var sql = `select * from user where id=` + req.query.id
 	connection.query(sql, (err, data) => {
 		if (err) {
@@ -76,7 +59,6 @@ router.get('/api/user/findone', (req, res) => {
 })
 // user/add
 router.post('/api/user/add', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
 	var sql = `insert into user values (null, ?, ?, ?, ?, ?, ?, ?)`
 	connection.query(sql, [req.body.name, req.body.fullName, req.body.password, req.body.role.id, req.body.company.id, req.body.phone, req.body.mail], (err, data) => {
 		if (err) {
@@ -88,7 +70,6 @@ router.post('/api/user/add', (req, res) => {
 })
 // /user/put
 router.put('/api/user/put', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
 	var sql = `update user set name=?,fullName=?,password=?,role_id=?,company_id=?,phone=?,mail=? where id=` + req.body.id
 	connection.query(sql, [req.body.name, req.body.fullName, req.body.password, req.body.role.id, req.body.company.id, req.body.phone, req.body.mail], (err, data) => {
 		if (err) {
@@ -100,7 +81,6 @@ router.put('/api/user/put', (req, res) => {
 })
 // /user/delete
 router.delete('/api/user/:id', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
 	var sql = `delete from user where id=` + req.params.id
 	connection.query(sql, (err, data) => {
 		if (err) {
@@ -114,7 +94,6 @@ router.delete('/api/user/:id', (req, res) => {
 // company
 // /company/findall
 router.get('/api/company/findall', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	var sql = 'select * from company'
 	connection.query(sql, (err, data) => {
 		if (err) {
@@ -127,7 +106,6 @@ router.get('/api/company/findall', (req, res) => {
 })
 // /company/findone
 router.get('/api/company/findone', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
 	var sql = 'select * from company where id=' + req.query.id
 	connection.query(sql, (err, data) => {
 		if (err) {
@@ -140,7 +118,6 @@ router.get('/api/company/findone', (req, res) => {
 })
 // /company/add
 router.post('/api/company/add', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	if (!req.body.name) {
 		res.status(500).send({message: '公司名不能为空'})
 	} else {
@@ -157,7 +134,6 @@ router.post('/api/company/add', (req, res) => {
 })
 // company/put
 router.put('/api/company/put', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
 	var sql = 'update company set name=? where id=' + req.body.id
 	connection.query(sql, [req.body.name], (err, data) => {
 		if (err) {
@@ -170,7 +146,6 @@ router.put('/api/company/put', (req, res) => {
 })
 // company/delete
 router.delete('/api/company/:id', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	var sql = 'delete from company where id=' + req.params.id
 	connection.query(sql, (err, data) => {
 		if (err) {
@@ -188,7 +163,6 @@ router.delete('/api/company/:id', (req, res) => {
 // role
 // /role/findall
 router.get('/api/role/findall', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	var sql = 'select * from role'
 	connection.query(sql, (err, data, fields) => {
 		if (err) {
@@ -202,7 +176,6 @@ router.get('/api/role/findall', (req, res) => {
 })
 // role/findone
 router.get('/api/role/findone', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	var sql = 'select * from role where id=' + req.query.id
 	connection.query(sql, (err, data) => {
 		if (err) {
@@ -214,7 +187,6 @@ router.get('/api/role/findone', (req, res) => {
 })
 // role/add
 router.post('/api/role/add', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	// res.send({name: req.body.name, fullname: req.body.fullName})
 	if (!req.body.name) {
 		res.status(500).send({'message':'角色不能为空'})
@@ -235,7 +207,6 @@ router.post('/api/role/add', (req, res) => {
 })
 // role/put
 router.put('/api/role/put', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	if (!req.body.name) {
 		res.status(500).send([{'message':'角色不能为空'}])
 	} else if (!req.body.fullName) {
@@ -255,7 +226,6 @@ router.put('/api/role/put', (req, res) => {
 })
 // role/delete
 router.delete('/api/role/:id', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
 	var sql = 'delete from role where id=' + req.params.id
 	connection.query(sql, (err, data) => {
 		if (err) {
