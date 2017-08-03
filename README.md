@@ -1,7 +1,7 @@
 # 移动端项目
 
 > 使用vue-cli+node+express+mysql创建了一个简单的项目，包含用户、用户角色、用户所属公司三大块。    
-  查看vue-cli+node+express+mongod项目的，切换到mongod分支上
+  查看vue-cli+node+express+mongodb项目的，切换到mongodb分支上
 
 ## Build Setup
 
