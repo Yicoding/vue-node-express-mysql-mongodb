@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 // user
-// /user/findall
+// /user/findall/aa
 router.get('/api/user/findall', (req, res) => {
   db.User.find({}, (err, data) => {
     if (err) {
